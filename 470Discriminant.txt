@@ -1,0 +1,17 @@
+ClearAll[a, b, c, s1, s0, s2, r0, r1]
+F[x_] := x^3 + a*x^2 + b*x + c
+R[x_] := r1*x + r0
+S[x_] := s2*x^2 + s1*x + s0
+Dis = -4 a^3*c + a^2 * b^2 + 18*a*b*c - 4*b^3 - 27*c^2;
+sol = SolveAlways[{Dis == R[x]*F[x] + S[x]*F'[x] }, {x}];
+val = sol[[4]]
+s0 = FullSimplify[val[[1]][[2]] ];
+s1 = FullSimplify[val[[2]][[2]] ];
+s2 = FullSimplify[val[[3]][[2]]];
+r0 = FullSimplify[val[[4]][[2]]];
+r1 = FullSimplify[val[[5]][[2]]];
+
+R2[x_] := r1*x + r0;
+S2[x_] := s2*x^2 + s1*x + s0;
+M := R2[x]*F[x] + S2[x]*F'[x]
+FullSimplify[M]
